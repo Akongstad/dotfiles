@@ -1,165 +1,175 @@
-// Zed settings
-//
-// For information on how to configure Zed, see the Zed
-// documentation: https://zed.dev/docs/configuring-zed
-//
-// To see all of Zed's default settings without changing your
-// custom settings, run the `open default settings` command
-// from the command palette or from `Zed` application menu.
+// Zed settings, shared between Linux and macOS.
+// Docs: https://zed.dev/docs/configuring-zed
+// Defaults: run `zed: open default settings` from the command palette.
 {
+  "base_keymap": "VSCode",
+  "cli_default_open_behavior": "new_window",
+  "autosave": "on_focus_change",
+  "format_on_save": "off",
+  "max_tabs": 5,
+  "ui_font_size": 20,
+  "buffer_font_size": 20,
+  "preferred_line_length": 120,
+  "auto_signature_help": true,
+  "extend_comment_on_newline": false,
+  "inlay_hints": {
+    "enabled": true,
+  },
+  "git": {
+    "git_gutter": "tracked_files",
+    "gutter_debounce": 500,
+  },
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false,
+  },
+
+  // Installed automatically on a fresh machine
+  "auto_install_extensions": {
+    "dockerfile": true,
+    "git-firefly": true,
+    "html": true,
+    "mermaid": true,
+    "sql": true,
+    "toml": true,
+  },
+
+  // Panels: navigation left, agent right, terminal bottom
+  "project_panel": {
+    "button": true,
+    "dock": "left",
+    "git_status": true,
+  },
   "outline_panel": {
-    "dock": "left"
+    "dock": "left",
   },
   "collaboration_panel": {
-    "dock": "left"
+    "dock": "left",
   },
   "git_panel": {
-    "dock": "left"
+    "tree_view": true,
+    "dock": "left",
   },
-  "theme": "One Dark",
+  "terminal": {
+    "dock": "bottom",
+    "shell": { "program": "fish" },
+    "env": {
+      "EDITOR": "zed --wait",
+    },
+    "detect_venv": "off",
+  },
+
+  // AI
+  "show_edit_predictions": false,
+  "edit_predictions": {
+    "provider": "copilot",
+    "mode": "subtle",
+  },
+  "agent": {
+    "dock": "right",
+    "default_profile": "minimal",
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "claude-haiku-4.5",
+      "enable_thinking": true,
+    },
+    "favorite_models": [
+      {
+        "provider": "ollama",
+        "model": "qwen3-coder:30b",
+        "enable_thinking": false,
+      },
+    ],
+  },
+  "agent_servers": {
+    "github-copilot-cli": {
+      "type": "registry",
+    },
+  },
+
   "ssh_connections": [
     {
       "host": "raspberrypi.local",
       "username": "andreaskongstad",
-      "args": [],
+      "args": ["-i", "~/.ssh/id_ed25519_pi.pub", "-Y"],
       "projects": [
         {
-          "paths": ["/home/andreaskongstad"]
+          "paths": ["/home/andreaskongstad/developer"],
         },
         {
-          "paths": ["/home/andreaskongstad/developer/picam-streamer"]
+          "paths": ["/home/andreaskongstad/developer/home-assistant/./"],
         },
-        {
-          "paths": ["/home/andreaskongstad/developer/searxng-docker"]
-        }
-      ]
-    }
-  ],
-  "edit_predictions": {
-    "provider": "zed",
-    "mode": "subtle"
-  },
-  "agent": {
-    "dock": "right",
-    "default_profile": "ask"
-  },
-
-  "terminal": {
-    "dock": "bottom",
-    "env": {
-      "EDITOR": "zed --wait"
+      ],
     },
-    "shell": { "program": "fish" },
-    "detect_venv": "off"
-  },
-  "vim_mode": false,
-  "base_keymap": "VSCode",
-  "format_on_save": "off",
-  "ui_font_size": 16,
-  "buffer_font_size": 14.0,
-  "show_edit_predictions": false,
-  "autosave": "on_focus_change",
-  "auto_signature_help": true,
-  "extend_comment_on_newline": false,
-  "git": {
-    "git_gutter": "tracked_files",
-    "gutter_debounce": 500,
-    "inline_blame": null
-  },
-  "preferred_line_length": 120,
+  ],
 
-  "inlay_hints": {
-    // Global switch to toggle hints on and off, switched off by default.
-    "enabled": true,
-    // Toggle certain types of hints on and off, all switched on by default.
-    "show_type_hints": true,
-    "show_parameter_hints": true,
-    // Corresponds to null/None LSP hint type value.
-    "show_other_hints": true
-  },
-  // Turn off telemetry
-  "telemetry": {
-    "diagnostics": false,
-    "metrics": false
-  },
-
-  // Move all panel to the right
-  "project_panel": {
-    "button": true,
-    "dock": "left",
-    "git_status": true
-  },
-
-  // Languages:
   "languages": {
     "Shell Script": {
-      "show_edit_predictions": true
+      "show_edit_predictions": true,
     },
     "JSONC": {
-      "show_edit_predictions": true
+      "show_edit_predictions": true,
     },
     "YAML": {
-      "show_edit_predictions": true
+      "show_edit_predictions": true,
     },
     "Python": {
       "show_edit_predictions": true,
-      "preferred_line_length": 120,
       "language_servers": ["basedpyright", "!pyright", "ruff"],
       "formatter": [
         {
-          "code_action": "source.organizeImports.ruff"
+          "code_action": "source.organizeImports.ruff",
         },
         {
-          "code_action": "source.fixAll.ruff"
+          "code_action": "source.fixAll.ruff",
         },
         {
           "language_server": {
-            "name": "ruff"
-          }
-        }
-      ]
+            "name": "ruff",
+          },
+        },
+      ],
     },
     "JSON": {
-      "preferred_line_length": 500
+      "preferred_line_length": 500,
     },
     "Markdown": {
-      "preferred_line_length": 160
+      "preferred_line_length": 160,
     },
     "LaTeX": {
       "show_edit_predictions": true,
-      "preferred_line_length": 160
+      "preferred_line_length": 160,
       // "formatter": {
       //   "command": "latexindent",
       //   "args": ["-", "-y=modifyLineBreaks:{textWrapOptions:{textWrap:1,columns:160}}"],
       //   "stdin": true
       // }
-    }
+    },
   },
   "lsp": {
     "ruff": {
       "initialization_options": {
         "settings": {
-          // Ruff server settings goes here
           "lineLength": 130,
           "lint": {
-            "extendSelect": ["I"]
-          }
-        }
-      }
+            "extendSelect": ["I"],
+          },
+        },
+      },
     },
     "basedpyright": {
       "settings": {
         "python": {
-          "pythonPath": ".venv/bin/python"
+          "pythonPath": ".venv/bin/python",
         },
         "basedpyright.analysis": {
           "diagnosticMode": "workspace",
           "typeCheckingMode": "standard",
           "inlayHints": {
-            "callArgumentNames": false
-          }
-        }
-      }
+            "callArgumentNames": false,
+          },
+        },
+      },
     },
     "texlab": {
       "settings": {
@@ -168,10 +178,10 @@
             // "onSave": true,
             "forwardSearchAfter": true,
             "executable": "tectonic",
-            "args": ["-X", "compile", "%f", "--untrusted", "--synctex", "--keep-logs", "--keep-intermediates"]
-          }
-        }
-      }
-    }
-  }
+            "args": ["-X", "compile", "%f", "--untrusted", "--synctex", "--keep-logs", "--keep-intermediates"],
+          },
+        },
+      },
+    },
+  },
 }

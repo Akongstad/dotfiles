@@ -1,14 +1,21 @@
-# Create python package
+# Python project setup
+
+New package (uses the `uv_build` backend by default):
 
 ```bash
-uv init --package --build-backend=uv
+uv init --package
 ```
 
+Pre-commit with ruff + commitizen (copy `.pre-commit-config.yaml` from this folder):
+
 ```bash
-uv add pre-commit --dev --preview
+uv add --dev pre-commit
+uv run pre-commit install
 ```
 
-Cannot import package. Make sure we do not reuse a cached install
+If the package can't be imported because uv reused a stale cached build:
+
 ```bash
-uv add <package> --preview --no-cache
+uv sync --reinstall-package <package>   # targeted
+uv add --no-cache <package>             # blunt: bypass the cache entirely
 ```

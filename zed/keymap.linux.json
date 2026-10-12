@@ -1,11 +1,12 @@
+// Zed keymap (Linux), linked to ~/.config/zed/keymap.json by install.sh.
+// Docs: https://zed.dev/docs/key-bindings
+// Defaults: run `zed: open default keymap` from the command palette.
 [
   {
     "context": "Workspace",
     "bindings": {
-      "": "project_symbols::Toggle",
       "ctrl-t": "workspace::ToggleBottomDock",
       "ctrl-b": "workspace::ToggleLeftDock",
-      //"ctrl-b": "project_panel::ToggleFocus",
       "ctrl-1": ["workspace::ActivatePane", 0],
       "ctrl-shift-d": "diagnostics::Deploy",
       "ctrl-shift-9": "tab_switcher::Toggle"
@@ -15,10 +16,10 @@
     "context": "Editor",
     "bindings": {
       "ctrl-shift-space": "editor::ShowEditPrediction",
-      "ctrl-t": ["terminal_panel::ToggleFocus", "workspace::ToggleBottomDock"],
-      "ctrl-b": ["project_panel::ToggleFocus", "workspace::ToggleLeftDock"],
+      "ctrl-t": "terminal_panel::ToggleFocus",
+      "ctrl-b": "project_panel::ToggleFocus",
       "ctrl-alt-l": "editor::Format",
-      "ctrl-i": ["editor::Hover", "editor::ShowSignatureHelp"],
+      "ctrl-i": "editor::Hover",
       "ctrl-shift-,": "tab_switcher::Toggle",
       "ctrl-/": ["editor::ToggleComments", { "advance_downwards": false }],
       "ctrl-alt-i": ["buffer_search::Deploy", { "selection_search_enabled": true }]
@@ -28,7 +29,9 @@
     "context": "Terminal",
     "bindings": {
       "ctrl-t": "workspace::ToggleBottomDock",
-      "ctrl-b": "project_panel::ToggleFocus"
+      "ctrl-b": "project_panel::ToggleFocus",
+      // Newline without submitting in TUI agents (Claude Code, opencode, ...)
+      "shift-enter": ["terminal::SendText", "\u001b\r"]
     }
   },
   {
@@ -57,24 +60,24 @@
       "ctrl-shift-f": "project_search::ToggleFocus"
     }
   },
-
+  // macOS-style text navigation: ctrl acts like cmd, alt like option
   {
     "context": "Editor && !ExcludedFromTextEditing",
     "bindings": {
-      "ctrl-right": "editor::MoveToEndOfLine",
       "ctrl-left": "editor::MoveToBeginningOfLine",
+      "ctrl-right": "editor::MoveToEndOfLine",
       "ctrl-shift-left": "editor::SelectToBeginningOfLine",
       "ctrl-shift-right": "editor::SelectToEndOfLine",
       "ctrl-backspace": "editor::DeleteToBeginningOfLine",
 
-      "alt-shift-down": "editor::DuplicateLineDown",
-      "alt-shift-up": "editor::DuplicateLineUp",
-
       "alt-left": "editor::MoveToPreviousWordStart",
-      "alt-shift-left": "editor::SelectToPreviousWordStart",
       "alt-right": "editor::MoveToNextWordEnd",
+      "alt-shift-left": "editor::SelectToPreviousWordStart",
       "alt-shift-right": "editor::SelectToNextWordEnd",
-      "alt-backspace": "editor::DeleteToPreviousWordStart"
+      "alt-backspace": "editor::DeleteToPreviousWordStart",
+
+      "alt-shift-up": "editor::DuplicateLineUp",
+      "alt-shift-down": "editor::DuplicateLineDown"
     }
   }
 ]

@@ -1,15 +1,10 @@
-// Zed keymap
-//
-// For information on binding keys, see the Zed
-// documentation: https://zed.dev/docs/key-bindings
-//
-// To see the default key bindings run `zed: open default keymap`
-// from the command palette.
+// Zed keymap (macOS), linked to ~/.config/zed/keymap.json by install.sh.
+// Docs: https://zed.dev/docs/key-bindings
+// Defaults: run `zed: open default keymap` from the command palette.
 [
   {
     "context": "Workspace",
     "bindings": {
-      "": "project_symbols::Toggle",
       "cmd-t": "workspace::ToggleBottomDock",
       "cmd-b": "workspace::ToggleLeftDock",
       "cmd-1": ["workspace::ActivatePane", 0],
@@ -24,7 +19,7 @@
       "cmd-t": ["terminal_panel::ToggleFocus", "workspace::ToggleBottomDock"],
       "cmd-b": ["project_panel::ToggleFocus", "workspace::ToggleLeftDock"],
       "cmd-alt-l": "editor::Format",
-      "cmd-i": ["editor::Hover", "editor::ShowSignatureHelp"],
+      "cmd-i": "editor::Hover",
       "cmd-shift-,": "tab_switcher::Toggle",
       "cmd-/": ["editor::ToggleComments", { "advance_downwards": false }],
       "cmd-alt-i": ["buffer_search::Deploy", { "selection_search_enabled": true }]

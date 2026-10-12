@@ -1,7 +1,16 @@
 ---
+# Without this, `pre-commit install` skips the commit-msg hook and commitizen never runs
+default_install_hook_types: [pre-commit, commit-msg]
+
 repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.17.0
+    hooks:
+      - id: ruff-check
+        args: [--fix]
+      - id: ruff-format
+
   - repo: https://github.com/commitizen-tools/commitizen
-    rev: v1.17.0
+    rev: v4.19.2
     hooks:
       - id: commitizen
-        stages: [commit-msg]

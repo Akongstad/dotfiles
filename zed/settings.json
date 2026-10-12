@@ -34,7 +34,7 @@
     "toml": true,
   },
 
-  // Panels: navigation left, agent right, terminal bottom
+  // Panels: navigation left, terminal bottom
   "project_panel": {
     "button": true,
     "dock": "left",
@@ -59,49 +59,12 @@
     "detect_venv": "off",
   },
 
-  // AI
+  // Edit predictions: off by default, enabled per language below
   "show_edit_predictions": false,
   "edit_predictions": {
     "provider": "copilot",
     "mode": "subtle",
   },
-  "agent": {
-    "dock": "right",
-    "default_profile": "minimal",
-    "default_model": {
-      "provider": "copilot_chat",
-      "model": "claude-haiku-4.5",
-      "enable_thinking": true,
-    },
-    "favorite_models": [
-      {
-        "provider": "ollama",
-        "model": "qwen3-coder:30b",
-        "enable_thinking": false,
-      },
-    ],
-  },
-  "agent_servers": {
-    "github-copilot-cli": {
-      "type": "registry",
-    },
-  },
-
-  "ssh_connections": [
-    {
-      "host": "raspberrypi.local",
-      "username": "andreaskongstad",
-      "args": ["-i", "~/.ssh/id_ed25519_pi.pub", "-Y"],
-      "projects": [
-        {
-          "paths": ["/home/andreaskongstad/developer"],
-        },
-        {
-          "paths": ["/home/andreaskongstad/developer/home-assistant/./"],
-        },
-      ],
-    },
-  ],
 
   "languages": {
     "Shell Script": {
@@ -115,7 +78,7 @@
     },
     "Python": {
       "show_edit_predictions": true,
-      "language_servers": ["basedpyright", "!pyright", "ruff"],
+      "language_servers": ["ty", "!basedpyright", "ruff"],
       "formatter": [
         {
           "code_action": "source.organizeImports.ruff",
@@ -136,15 +99,15 @@
     "Markdown": {
       "preferred_line_length": 160,
     },
-    "LaTeX": {
-      "show_edit_predictions": true,
-      "preferred_line_length": 160,
+      // "LaTeX": {
+      //   "show_edit_predictions": true,
+      // "preferred_line_length": 160,
       // "formatter": {
       //   "command": "latexindent",
       //   "args": ["-", "-y=modifyLineBreaks:{textWrapOptions:{textWrap:1,columns:160}}"],
       //   "stdin": true
       // }
-    },
+    // },
   },
   "lsp": {
     "ruff": {
@@ -157,31 +120,25 @@
         },
       },
     },
-    "basedpyright": {
+    "ty": {
       "settings": {
-        "python": {
-          "pythonPath": ".venv/bin/python",
-        },
-        "basedpyright.analysis": {
-          "diagnosticMode": "workspace",
-          "typeCheckingMode": "standard",
-          "inlayHints": {
-            "callArgumentNames": false,
-          },
+        "diagnosticMode": "workspace",
+        "inlayHints": {
+          "callArgumentNames": false,
         },
       },
     },
-    "texlab": {
-      "settings": {
-        "texlab": {
-          "build": {
-            // "onSave": true,
-            "forwardSearchAfter": true,
-            "executable": "tectonic",
-            "args": ["-X", "compile", "%f", "--untrusted", "--synctex", "--keep-logs", "--keep-intermediates"],
-          },
-        },
-      },
-    },
+    // "texlab": {
+    //   "settings": {
+    //     "texlab": {
+    //       "build": {
+    //         // "onSave": true,
+    //         "forwardSearchAfter": true,
+    //         "executable": "tectonic",
+    //         "args": ["-X", "compile", "%f", "--untrusted", "--synctex", "--keep-logs", "--keep-intermediates"],
+    //       },
+    //     },
+    //   },
+    // },
   },
 }

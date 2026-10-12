@@ -52,6 +52,8 @@ fi
 if ask "Install zed settings + keymap?" y; then
   link zed/settings.json "$config/zed/settings.json"
   link "zed/keymap.$os.json" "$config/zed/keymap.json"
+  link zed/tasks.json "$config/zed/tasks.json"
+  link zed/debug.json "$config/zed/debug.json"
 
   # Arch packages Zed as `zeditor`; expose it as `zed` so EDITOR="zed --wait" works
   zed_bin="$HOME/.local/bin/zed"

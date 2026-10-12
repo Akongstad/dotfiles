@@ -1,0 +1,45 @@
+// Zed tasks, linked to ~/.config/zed/tasks.json by install.sh.
+// Docs: https://zed.dev/docs/tasks
+// C++ tests: select a test or suite name; the selection reaches sh as $CPP_TEST.
+// Commands run in sh (not the login shell, which may be fish). Don't use ${...}: Zed parses it.
+[
+  // GoogleTest suites and cases, doctest cases. Bound to ctrl-k c (cmd-k c on macOS).
+  {
+    "label": "C++ test: run",
+    "command": "cmake --build build && ctest --test-dir build --output-on-failure -R \"$CPP_TEST\"",
+    "env": { "CPP_TEST": "$ZED_SELECTED_TEXT" },
+    "shell": { "program": "sh" },
+    "save": "all",
+    "reveal": "no_focus",
+    "allow_concurrent_runs": true
+  },
+  // doctest suites, via the labels from doctest_discover_tests(... ADD_LABELS 1)
+  {
+    "label": "C++ test: run doctest suite",
+    "command": "cmake --build build && ctest --test-dir build --output-on-failure -L \"$CPP_TEST\"",
+    "env": { "CPP_TEST": "$ZED_SELECTED_TEXT" },
+    "shell": { "program": "sh" },
+    "save": "all",
+    "reveal": "no_focus",
+    "allow_concurrent_runs": true
+  },
+  // Build steps for debug.json: link the binary holding the selected test to build/zed-test-bin
+  {
+    "label": "C++ test: link",
+    "command": "cmake --build build && e=$(ctest --test-dir build --show-only=json-v1 -R \"$CPP_TEST\" | jq -er '.tests[0].command[0]') && ln -sf \"$e\" build/zed-test-bin",
+    "env": { "CPP_TEST": "$ZED_SELECTED_TEXT" },
+    "shell": { "program": "sh" },
+    "save": "all",
+    "reveal": "no_focus",
+    "hide": "on_success"
+  },
+  {
+    "label": "C++ test: link doctest suite",
+    "command": "cmake --build build && e=$(ctest --test-dir build --show-only=json-v1 -L \"$CPP_TEST\" | jq -er '.tests[0].command[0]') && ln -sf \"$e\" build/zed-test-bin",
+    "env": { "CPP_TEST": "$ZED_SELECTED_TEXT" },
+    "shell": { "program": "sh" },
+    "save": "all",
+    "reveal": "no_focus",
+    "hide": "on_success"
+  }
+]

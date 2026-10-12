@@ -1,0 +1,30 @@
+// Zed debug scenarios, linked to ~/.config/zed/debug.json by install.sh.
+// Docs: https://zed.dev/docs/debugger
+// Select a test or suite name, press F4 and pick one of these. F5 reruns the last session.
+// The build step (tasks.json) links the binary holding the selected test to build/zed-test-bin.
+[
+  {
+    "label": "C++ test: debug doctest case",
+    "adapter": "CodeLLDB",
+    "request": "launch",
+    "build": "C++ test: link",
+    "program": "$ZED_WORKTREE_ROOT/build/zed-test-bin",
+    "args": ["--test-case=$ZED_SELECTED_TEXT"]
+  },
+  {
+    "label": "C++ test: debug doctest suite",
+    "adapter": "CodeLLDB",
+    "request": "launch",
+    "build": "C++ test: link doctest suite",
+    "program": "$ZED_WORKTREE_ROOT/build/zed-test-bin",
+    "args": ["--test-suite=$ZED_SELECTED_TEXT"]
+  },
+  {
+    "label": "C++ test: debug gtest",
+    "adapter": "CodeLLDB",
+    "request": "launch",
+    "build": "C++ test: link",
+    "program": "$ZED_WORKTREE_ROOT/build/zed-test-bin",
+    "args": ["--gtest_filter=*$ZED_SELECTED_TEXT*"]
+  }
+]

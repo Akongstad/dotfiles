@@ -9,7 +9,8 @@
       "ctrl-b": "workspace::ToggleLeftDock",
       "ctrl-1": ["workspace::ActivatePane", 0],
       "ctrl-shift-d": "diagnostics::Deploy",
-      "ctrl-shift-9": "tab_switcher::Toggle"
+      "ctrl-shift-9": "tab_switcher::Toggle",
+      "ctrl-k c": ["task::Spawn", { "task_name": "C++ test: run" }]
     }
   },
   {

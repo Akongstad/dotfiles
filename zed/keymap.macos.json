@@ -10,7 +10,8 @@
       "cmd-1": ["workspace::ActivatePane", 0],
       "cmd-shift-d": "diagnostics::Deploy",
       "cmd-shift-9": "tab_switcher::Toggle",
-      "cmd-k c": ["task::Spawn", { "task_name": "C++ test: run" }]
+      "cmd-k c": ["task::Spawn", { "task_name": "C++ test: run" }],
+      "cmd-g": "git_panel::Toggle"
     }
   },
   {
@@ -56,12 +57,12 @@
       "ctrl--": "pane::GoBack",
       "ctrl-shift-right": "pane::GoForward",
       "cmd-shift-t": "pane::ReopenClosedItem",
-      "cmd-shift-f": "project_search::ToggleFocus"
+      "cmd-shift-f": "project_search::ToggleFocus",
+      "cmd-g": "git_panel::Toggle"
     }
   },
   {
     "bindings": {
-      "cmd-g": "git_panel::Toggle",
       "cmd-b": "project_panel::Toggle"
     }
   }

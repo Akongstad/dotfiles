@@ -10,7 +10,8 @@
       "ctrl-1": ["workspace::ActivatePane", 0],
       "ctrl-shift-d": "diagnostics::Deploy",
       "ctrl-shift-9": "tab_switcher::Toggle",
-      "ctrl-k c": ["task::Spawn", { "task_name": "C++ test: run" }]
+      "ctrl-k c": ["task::Spawn", { "task_name": "C++ test: run" }],
+      "ctrl-g": "git_panel::Toggle"
     }
   },
   {
@@ -23,7 +24,8 @@
       "ctrl-i": "editor::Hover",
       "ctrl-shift-,": "tab_switcher::Toggle",
       "ctrl-/": ["editor::ToggleComments", { "advance_downwards": false }],
-      "ctrl-alt-i": ["buffer_search::Deploy", { "selection_search_enabled": true }]
+      "ctrl-alt-i": ["buffer_search::Deploy", { "selection_search_enabled": true }],
+      "ctrl-g": "git_panel::Toggle"
     }
   },
   {

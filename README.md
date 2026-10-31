@@ -24,7 +24,8 @@ Because the live files are symlinks, changes made from Zed's settings UI or kitt
 | `zed/keymap.{linux,macos}.json` | `~/.config/zed/keymap.json` | Linux keymap adds macOS-style text navigation |
 | `zed/tasks.json` | `~/.config/zed/tasks.json` | C++ test tasks, see below |
 | `zed/debug.json` | `~/.config/zed/debug.json` | C++ test debug scenarios, see below |
-| `claude/settings.json` | `~/.claude/settings.json` | Claude Code user settings: sandboxed Bash, no reads outside the working dirs, no bypass mode. Linux needs `bubblewrap` and `socat` |
+| `claude/settings.json` | `~/.claude/settings.json` | Claude Code user settings: sandboxed Bash, no reads outside the working dirs, no bypass mode; the sandbox may use the Go module/build caches and the Go module proxy. Linux needs `bubblewrap` and `socat` |
+| `claude/CLAUDE.md` | `~/.claude/CLAUDE.md` | Claude Code user instructions: build outputs and scratch files go in a self-ignoring `tmp/`, not the repo root |
 | `linux/xkb/` | `~/.config/xkb/` | Danish layout with mac-style `{[]}` on AltGr; pick "Danish (custom brace)" in GNOME Settings → Keyboard, then log out and in |
 
 On Linux, `install.sh` also links `~/.local/bin/zed` to `zeditor` (Arch's name for the Zed binary).

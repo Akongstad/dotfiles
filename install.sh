@@ -88,6 +88,7 @@ fi
 if ask "Install Claude Code user settings?" y; then
   # Claude Code reads ~/.claude, not XDG; CLAUDE_CONFIG_DIR overrides it
   link claude/settings.json "${CLAUDE_CONFIG_DIR:-$HOME/.claude}/settings.json"
+  link claude/CLAUDE.md "${CLAUDE_CONFIG_DIR:-$HOME/.claude}/CLAUDE.md"
 
   # sandbox.failIfUnavailable makes Claude Code refuse to start without these
   if [[ $os == linux ]]; then

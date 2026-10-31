@@ -78,6 +78,25 @@ if ask "Install ghostty config?" y; then
   fi
 fi
 
+if ask "Install kitty config?" y; then
+  # Per-file links: `kitten themes` writes through them, and its kitty.conf.bak stays out of the repo
+  for f in kitty.conf current-theme.conf quick-access-terminal.conf tjep.conf; do
+    link "terminal/kitty/$f" "$config/kitty/$f"
+  done
+fi
+
+if ask "Install Claude Code user settings?" y; then
+  # Claude Code reads ~/.claude, not XDG; CLAUDE_CONFIG_DIR overrides it
+  link claude/settings.json "${CLAUDE_CONFIG_DIR:-$HOME/.claude}/settings.json"
+
+  # sandbox.failIfUnavailable makes Claude Code refuse to start without these
+  if [[ $os == linux ]]; then
+    for bin in bwrap socat; do
+      command -v "$bin" >/dev/null || echo "warn    $bin missing; Claude Code won't start until it's installed (pacman -S ${bin/bwrap/bubblewrap})"
+    done
+  fi
+fi
+
 if [[ $os == linux ]] && ask "Install xkb keyboard layout (Danish custom brace)?" n; then
   link linux/xkb/symbols/mydk "$config/xkb/symbols/mydk"
   link linux/xkb/rules/evdev.xml "$config/xkb/rules/evdev.xml"

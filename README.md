@@ -8,10 +8,10 @@ Configs for my CachyOS desktop and Mac.
 ./install.sh
 ```
 
-Asks per tool, then symlinks its config into `~/.config`, picking the Linux or macOS variant automatically.
-Fish, Zed and Ghostty default to yes; the xkb layout defaults to no.
+Asks per tool, then symlinks its config into `~/.config` (Claude Code: `~/.claude`), picking the Linux or macOS variant automatically.
+Fish, Zed, Ghostty, kitty and Claude Code default to yes; the xkb layout defaults to no.
 Existing files that differ from the repo are kept as `<file>.bak.<timestamp>`. Safe to re-run.
-Because the live files are symlinks, changes made from Zed's settings UI land directly in this repo.
+Because the live files are symlinks, changes made from Zed's settings UI or kitty's theme picker land directly in this repo.
 
 ## Configs
 
@@ -19,10 +19,12 @@ Because the live files are symlinks, changes made from Zed's settings UI land di
 | --- | --- | --- |
 | `terminal/fish/config.fish` | `~/.config/fish/config.fish` | CachyOS defaults on Linux, Homebrew on macOS |
 | `terminal/ghostty/config.{linux,macos}` | `~/.config/ghostty/config` | Generator: https://ghostty.zerebos.com |
+| `terminal/kitty/` | `~/.config/kitty/` | Theme via `kitten themes` (writes through the links). `tjep.conf` is a small hidden instance (launch command inside); `quick-access-terminal.conf` is for `kitten quick-access-terminal` |
 | `zed/settings.json` | `~/.config/zed/settings.json` | Shared; extensions listed under `auto_install_extensions` |
 | `zed/keymap.{linux,macos}.json` | `~/.config/zed/keymap.json` | Linux keymap adds macOS-style text navigation |
 | `zed/tasks.json` | `~/.config/zed/tasks.json` | C++ test tasks, see below |
 | `zed/debug.json` | `~/.config/zed/debug.json` | C++ test debug scenarios, see below |
+| `claude/settings.json` | `~/.claude/settings.json` | Claude Code user settings: sandboxed Bash, no reads outside the working dirs, no bypass mode. Linux needs `bubblewrap` and `socat` |
 | `linux/xkb/` | `~/.config/xkb/` | Danish layout with mac-style `{[]}` on AltGr; pick "Danish (custom brace)" in GNOME Settings → Keyboard, then log out and in |
 
 On Linux, `install.sh` also links `~/.local/bin/zed` to `zeditor` (Arch's name for the Zed binary).

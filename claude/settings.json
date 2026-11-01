@@ -15,7 +15,11 @@
     "failIfUnavailable": true,
     "allowUnsandboxedCommands": false,
     "filesystem": {
-      "allowRead": ["~/go/pkg/mod", "~/.cache/go-build"],
+      "allowRead": ["~/go/pkg/mod",
+        "~/.cache/go-build",
+        "~/.config/tjep",
+        "~/.local/share/tjep"
+      ],
       "allowWrite": ["~/go/pkg/mod", "~/.cache/go-build"]
     },
     "network": {
